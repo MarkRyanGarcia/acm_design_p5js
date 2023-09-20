@@ -1,13 +1,18 @@
+let fish, bubbles;
+
 function setup() {
   createCanvas(400, 400);
+  fish = new Fish(new createVector(width / 2, height / 2));
+  bubbles = new ParticleSystem(fish.getMouthPosition());
 }
 
 function draw() {
-  if (mouseIsPressed) {
-    fill(0);
-  } else {
-    fill(5, 163, 255);
+  background(17, 78, 117);
+  bubbles.run();
+  bubbles.origin = fish.getMouthPosition();
+  if (frameCount % 10 === 0) {
+    bubbles.addParticle();
   }
-
-  ellipse(mouseX, mouseY, 80, 80);
+  
+  fish.run();
 }
